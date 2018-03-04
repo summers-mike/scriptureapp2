@@ -1,0 +1,106 @@
+﻿@{
+    Layout = "~/_Layout.cshtml";
+    Page.Title = "Edit Scripture";
+
+    var book = "";
+    var chapter = 0;
+    var verse = 0;
+    var note = "";
+    var date = "";
+    var scriptureId = "";
+
+    if (!IsPost)
+    {
+        if (!Request.QueryString["ID"].IsEmpty() && Request.QueryString["ID"].IsInt())
+        {
+            scriptureId = Request.QueryString["ID"];
+            var db = Database.Open("WebPagesScriptures2");
+            var dbCommand = "SELECT * FROM Scriptures WHERE ID = @0";
+            var row = db.QuerySingle(dbCommand, scriptureId);
+
+            if(row != null)
+            {
+                book = row.book;
+                chapter = row.chapter;
+                verse = row.verse;
+                note = row.note;
+                date = row.date.ToString();
+            }
+            else
+            {
+                Validation.AddFormError("No scripture was found for that ID.");
+            }
+
+        }
+        else
+        {
+            Validation.AddFormError("No scripture was selected.");
+        }
+    }
+
+
+    if (IsPost)
+    {
+        Validation.RequireField("book", "You must enter a book");
+        Validation.RequireField("chapter", "You must enter a chapter");
+        Validation.RequireField("verse", "You must enter a verse");
+        Validation.RequireField("note", "You must enter a note");
+        Validation.RequireField("date", "You must enter a date");
+        Validation.RequireField("scriptureid", "No scripture ID was submitted!");
+
+        book = Request.Form["book"];
+        chapter = Request.Form["chapter"].AsInt();
+        verse = Request.Form["verse"].AsInt();
+        note = Request.Form["note"];
+        date = Request.Form["date"];
+        scriptureId = Request.Form["scriptureId"];
+
+        if (Validation.IsValid())
+        {
+            var db = Database.Open("WebPagesScriptures2");
+            var updateCommand = "UPDATE Scriptures SET book=@0, chapter=@1, verse=@2, note=@3, date=@4 WHERE Id=@5";
+            db.Execute(updateCommand, book, chapter, verse, note, date, scriptureId);
+            Response.Redirect("~/Scriptures");
+        }
+    }
+
+
+}
+
+    <h1>Edit a Scripture</h1>
+    @Html.ValidationSummary()
+    <form method="post">
+        <fieldset>
+            <legend>Scripture Information</legend>
+
+            <p>
+                <label for="book">Book:</label>
+                <input type="text" name="book" value="@book" />
+            </p>
+
+            <p>
+                <label for="chapter">Chapter:</label>
+                <input type="text" name="chapter" value="@chapter" />
+            </p>
+
+            <p>
+                <label for="verse">Verse:</label>
+                <input type="text" name="verse" value="@verse" />
+            </p>
+
+            <p>
+                <label for="note">Note:</label>
+                <input type="text" name="note" value="@note" />
+            </p>
+
+            <p>
+                <label for="date">Date Added:</label>
+                <input type="text" name="date" value="@date" />
+            </p>
+
+            <input type="hidden" name="scriptureid" value="@scriptureId" />
+
+            <p><input type="submit" name="buttonSubmit" value="Submit Changes" /></p>
+        </fieldset>
+    </form>
+    <p><a href="~/Scriptures">Return to scripture listing</a></p>

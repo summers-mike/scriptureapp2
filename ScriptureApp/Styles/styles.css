@@ -1,0 +1,163 @@
+﻿@import url('https://fonts.googleapis.com/css?family=Ubuntu');
+@import url('https://fonts.googleapis.com/css?family=Lobster');
+
+
+html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 60%;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 10pt;
+    background-color: #99e1d9;
+    line-height: 1.6em;
+    color: #32292f;
+}
+
+div {
+    color: #32292f;
+}
+
+a:link, a:visited {
+    color: #007d87;
+}
+
+a:hover, a:active {
+    color: #c10081;
+}
+
+.head a:link, .head a:visited {
+    color: #dae8e8;
+}
+
+.head a:hover, .head a:active {
+    color: #ffffff;
+}
+
+tfoot {
+    font-weight: bold;
+    font-size: 1.3em;
+    text-align: right;
+}
+
+a#addScript:link, a#addScript:visited {
+    background-color: #32292f;
+    padding: 5px 8px 5px 8px;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+a#addScript:hover, a#addScript:active {
+    background-color: #70abaf;
+}
+
+input[type=text] {
+    border: 1px solid #70abaf;
+}
+
+input[type=submit] {
+    border: 1px solid #70abaf;
+    background-color: #70abaf;
+    color: #ffffff;
+}
+
+h1 {
+    font-size: 3em;
+    font-weight: normal;
+    margin-left: 30px;
+}
+
+h2 {
+    font-size: 1.4em;
+}
+
+#container {
+    min-height: 100%;
+    position: relative;
+    left: 10%;
+}
+
+header {
+    font-family: 'Lobster', sans-serif;
+    padding: 8px;
+    width: 80%;
+    background-color: #32292f;
+    color: White;
+}
+
+main {
+    width: 80%;
+    padding: 8px;
+    padding-bottom: 4em;
+    background-color: White;
+}
+
+footer {
+    width: 80%;
+    height: 2em;
+    padding: 8px;
+    margin-top: -2em;
+    background-color: #705d56;
+    color: #99e1d9;
+}
+
+.head {
+    background-color: #70abaf;
+    font-weight: bold;
+    color: #FFF;
+}
+
+.clearfix {
+    overflow: auto;
+}
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.searchHolder {
+    float: left;
+    margin: 0px 30px 20px 0px;
+}
+
+.grid th, .grid td {
+    border: 1px solid #70abaf;
+    padding: 5px;
+}
+
+.alt {
+    background-color: #e0f6f4;
+    color: #000;
+}
+
+.selected {
+    background-color: Yellow;
+}
+
+span.caption {
+    width: 100px;
+}
+
+span.dataDisplay {
+    font-weight: bold;
+}
+
+.field-validation-error {
+    font-weight: bold;
+    color: red;
+    background-color: yellow;
+}
+
+.validation-summary-errors {
+    border: 2px dashed red;
+    color: red;
+    background-color: yellow;
+    font-weight: bold;
+    margin: 12px;
+}
